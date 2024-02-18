@@ -1,10 +1,25 @@
 
 // vocal, drum, bass, and other are volumes ranging from 0 to 100
+/** This function loads resources that will be used later. */
+let backgrounds, bass_hand, drum_hand, drum, trumpet_hand; //define pictures
+let first_time = true;
+
 function draw_one_frame(words, vocal, drum, bass, other, counter) {
   background(20)
   textFont('Verdana'); // please use CSS safe fonts
   rectMode(CENTER)
   textSize(24);
+  
+  if(first_time){
+    backgrounds = loadImage('background.jpg');//load every pictures and hands
+    bass_hand = loadImage('bass_hand.png');
+    drum_hand = loadImage('drum_hand.png');
+    drum = loadImage('drum.png');
+    trumpet_hand = loadImage('trumpet_hand.png');
+    first_time = false;
+  }
+
+  image(drum,20,20);
 
    let bar_spacing = height / 10;
    let bar_height = width / 12;
@@ -36,8 +51,19 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
    text("other", bar_pos_x, height / 2 + 4 * bar_spacing + 8);
    fill(255, 255, 0);
  
+
+  // //pba
+  // fill(map(vocal,0,100,0,255), map(drum,0,100,0,255),map(bass,0,100,0,255));
+  // rect(bar_pos_x, height / 2 + 4 * bar_spacing, map(other,0,100,0,width), bar_height);
+  // fill(0);
+  // text("other", bar_pos_x, height / 2 + 4 * bar_spacing + 8);
+  // fill(255, 255, 0);
+
+
    // display "words"
    textAlign(CENTER);
    textSize(vocal);
    text(words, width/2, height/3);
+  //self notes: as calcualte nearly 28.57ms per line 
+   
 }
